@@ -54,7 +54,7 @@ pub use http_types;
 ///
 /// How `Clone` is implemented is up to the implementors, but in an ideal scenario combining this
 /// with the `Client` builder will allow for high connection reuse, improving latency.
-pub trait HttpClient: std::fmt::Debug + Unpin + Send + Sync + Clone + 'static {
+pub trait HttpClient: std::fmt::Debug + Unpin + Send + Sync + Clone + Sized + 'static {
     /// Perform a request.
     fn send(&self, req: Request) -> BoxFuture<'static, Result<Response, Error>>;
 }
